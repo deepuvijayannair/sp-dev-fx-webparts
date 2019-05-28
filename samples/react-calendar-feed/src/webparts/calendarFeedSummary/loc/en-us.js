@@ -22,6 +22,7 @@ define([], function() {
     "DateRangeOptionQuarter": "Next quarter",
     "UseCORSFieldLabel": "Use proxy",
     "UseCORSFieldCallout": "Enable this option if you get a CORS message",
+    "UseCORSFieldCalloutDisabled": "This option is disabled when using the Mock provider",
     "CORSOn": "On",
     "CORSOff": "Off",
     "AdvancedGroupName": "Advanced",
@@ -49,6 +50,9 @@ define([], function() {
     "ErrorInvalidiCalFeed": "The URL you provided does not appear to be an iCal feed. Are you sure you selected the right feed type?",
     "ErrorInvalidWordPressFeed": "The URL you provided does not appear to be a WordPress feed. Are you sure you selected the right feed type?",
     "AddToCalendarAriaLabel": "Press enter to download the calendar file to your device.",
-    "AddToCalendarButtonLabel": "Add to my calendar"
+    "AddToCalendarButtonLabel": "Add to my calendar",
+    "AllDayDateFormat": "dddd, MMMM Do YYYY",
+    "LocalizedTimeFormat": "llll",
+    "FeedSettingsGroupName": "Calendar feed"
   }
 });

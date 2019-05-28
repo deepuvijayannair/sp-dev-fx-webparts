@@ -1,9 +1,9 @@
-import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
-import { IWebPartContext } from '@microsoft/sp-webpart-base';
-import * as moment from 'moment';
-import { CalendarEventRange } from '.';
-import { ICalendarEvent } from './ICalendarEvent';
-import { ICalendarService } from './ICalendarService';
+import { HttpClient, HttpClientResponse } from "@microsoft/sp-http";
+import { IWebPartContext } from "@microsoft/sp-webpart-base";
+import * as moment from "moment";
+import { CalendarEventRange } from ".";
+import { ICalendarEvent } from "./ICalendarEvent";
+import { ICalendarService } from "./ICalendarService";
 
 /**
  * Base Calendar Service
@@ -60,7 +60,6 @@ export abstract class BaseCalendarService implements ICalendarService {
      */
     protected replaceTokens(feedUrl: string, dateRange: CalendarEventRange): string {
         const startMoment: moment.Moment = moment(dateRange.Start);
-        const endMoment: moment.Moment = moment(dateRange.End);
         const startDate: string = startMoment.format("YYYY-MM-DD");
         const endDate: string = startMoment.format("YYYY-MM-DD");
 
@@ -74,12 +73,21 @@ export abstract class BaseCalendarService implements ICalendarService {
      */
     protected fetchResponse(feedUrl: string): Promise<HttpClientResponse> {
         // would love to use a different approach to workaround CORS issues
-        const requestUrl: string = this.UseCORS ?
-            `https://cors-anywhere.herokuapp.com/${feedUrl}` :
-            feedUrl;
+        const requestUrl: string = this.getCORSUrl(feedUrl);
 
         return this.Context.httpClient.fetch(requestUrl,
             HttpClient.configurations.v1, {});
+    }
+
+    /**
+     * Returns a URL or a CORS-formatted URL
+     * @param feedUrl The URL for the feed
+     */
+    protected getCORSUrl(feedUrl: string): string {
+               // would love to use a different approach to workaround CORS issues
+      return this.UseCORS ?
+          `https://cors-anywhere.herokuapp.com/${feedUrl}` :
+          feedUrl;
     }
 
     /**
