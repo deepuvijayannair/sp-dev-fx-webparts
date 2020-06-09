@@ -1,3 +1,18 @@
+---
+page_type: sample
+products:
+- office-sp
+languages:
+- javascript
+- typescript
+extensions:
+  contentType: samples
+  technologies:
+  - SharePoint Framework
+  platforms:
+  - react
+  createdDate: 8/1/2017 12:00:00 AM
+---
 # SPFx React app settings webpart #
 
 ## Summary
@@ -60,5 +75,3 @@ This Web Part illustrates the following concepts on top of the SharePoint Framew
 - The use of app settings and passing the app settings to React components.
 
 <img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/samples/react-app-settings" />
-
-

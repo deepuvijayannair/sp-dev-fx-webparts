@@ -1,24 +1,18 @@
 # Filterable Image Gallery Web Part
 
 ## Summary
-This sample describe a SPFX application which implement an image gallery with taxonomy base filtering and typed search. This application also implement pagination.
+This sample describes an SPFx application which implements an image gallery with taxonomy base filtering and typed search. This application also implements pagination.
 
 
 ![Filterable Image Gallery web part built on the SharePoint Framework using React](./assets/image-gallery.gif)
 
 ## Used SharePoint Framework Version 
-![drop](https://img.shields.io/badge/version-GA-green.svg)
+![drop](https://img.shields.io/badge/version-1.6.0-green.svg)
 
 ## Applies to
 
 * [SharePoint Framework](https:/dev.office.com/sharepoint)
 * [Office 365 tenant](https://dev.office.com/sharepoint/docs/spfx/set-up-your-development-environment)
-
-> Update accordingly as needed.
-
-## Prerequisites
- 
-> Any special pre-requisites?
 
 ## Solution
 
@@ -44,7 +38,6 @@ Version|Date|Comments
   - `npm install`
   - `gulp serve`
 
-> Include any additional steps as needed.
 
 - Create a Department Term set with associated child terms, for example, HR, Information Services, Sales, Marketing
 - Create an Image Library and add some sample images
@@ -52,11 +45,11 @@ Version|Date|Comments
 - Also fill in Title field for each image, this is require for typed search functionality
 
 ## Features
-Here are main features for this application
+Here are the main features for this application
 
-- Taxonomy based filtering
+- Taxonomy-based filtering
 - Typed Search
-- Right side popup panel
-- Server side pagination using REST API
+- Right-side popup panel
+- Server-side pagination using REST API
 
 <img src="https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/samples/react-image-gallery" />

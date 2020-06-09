@@ -1,4 +1,25 @@
 declare interface ICalendarWebPartStrings {
+  WeeksOnLabel: string;
+  PaternLabel: string;
+  OcurrencesLabel: string;
+  dateRangeLabel: string;
+  weekEndDay: string;
+  weekDayLabel: string;
+  lastLabel: string;
+  fourthLabel: string;
+  thirdLabel: string;
+  secondLabel: string;
+  firstLabel: string;
+  theLabel: string;
+  MonthsLabel: string;
+  ofEveryLabel: string;
+  AllowedValues1to12Label: string;
+  noEndDate: string;
+  everyweekdays: string;
+  days: string;
+  every: string;
+  EndByLabel: string;
+  EndAfterLabel: string;
   HttpErrorMessage: string;
   CategoryPlaceHolder: string;
   CategoryLabel: string;
@@ -26,9 +47,9 @@ declare interface ICalendarWebPartStrings {
   NextMonth: string;
   PrevMonth: string;
   GoToDay: string;
-  ShortDay_Saunday: string;
+  ShortDay_Sunday: string;
   ShortDay_Friday: string;
-  ShortDay_Tursday: string;
+  ShortDay_Thursday: string;
   ShortDay_W: string;
   ShortDay_T: string;
   ShortDay_M: string;
@@ -52,7 +73,7 @@ declare interface ICalendarWebPartStrings {
   Oct:string;
   Nov:string;
   Dez:string;
-  Dezember: string;
+  December: string;
   November: string;
   October: string;
   September: string;
@@ -91,7 +112,30 @@ declare interface ICalendarWebPartStrings {
   previousLabel: string;
   nextLabel: string;
   showMore: string;
-  PropPanelSiteUrlErrorMessage: string;
+  recurrenceEventLabel: string;
+  editRecurrenceSeries: string;
+  ifRecurrenceLabel: string;
+  onLabel: string;
+  offLabel: string;
+  eventDescriptionLabel: string;
+  recurrenceInformationLabel: string;
+  dailyLabel: string;
+  weeklyLabel: string;
+  monthlyLabel: string;
+  yearlyLabel: string;
+  patternLabel: string;
+  dateRangeLabel: string;
+  occurrencesLabel: string;
+  ofMonthLabel:string;
+  everyFormat: string;
+  everySecondFormat: string;
+  everyNthFormat: string;
+  onTheDayFormat: string;
+  onTheLabel: string;
+  theSuffix: string;
+  yearLabel: string;
+  theNthOfMonthFormat: string;
+  onTheDayTypeFormat: string;
 }
 
 declare module 'CalendarWebPartStrings' {

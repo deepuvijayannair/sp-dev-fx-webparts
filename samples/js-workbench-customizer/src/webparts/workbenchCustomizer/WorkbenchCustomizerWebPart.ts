@@ -1,9 +1,6 @@
 import { Version } from '@microsoft/sp-core-library';
-import {
-  BaseClientSideWebPart,
-  IPropertyPaneConfiguration,
-  PropertyPaneToggle
-} from '@microsoft/sp-webpart-base';
+import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
+import { IPropertyPaneConfiguration, PropertyPaneToggle } from "@microsoft/sp-property-pane";
 import styles from './WorkbenchCustomizerWebPart.module.scss';
 
 import * as strings from 'WorkbenchCustomizerWebPartStrings';
@@ -11,6 +8,7 @@ import * as strings from 'WorkbenchCustomizerWebPartStrings';
 export interface IWorkbenchCustomizerWebPartProps {
   requiresPageRefresh: boolean;
   customWorkbenchStyles: boolean;
+  customWorkbenchStylesFullWidth: boolean;
   previewMode: boolean;
 }
 
@@ -27,6 +25,10 @@ export default class WorkbenchCustomizerWebPart extends BaseClientSideWebPart<IW
 
       if (this.properties.customWorkbenchStyles) {
         await import('./styles/customWorkbenchStyles.module.scss');
+      }
+
+      if (this.properties.customWorkbenchStyles && this.properties.customWorkbenchStylesFullWidth) {
+        await import('./styles/customWorkbenchStylesFullWidth.module.scss');
       }
 
       if (this.properties.previewMode) {
@@ -70,6 +72,10 @@ export default class WorkbenchCustomizerWebPart extends BaseClientSideWebPart<IW
               groupFields: [
                 PropertyPaneToggle('customWorkbenchStyles', {
                   label: strings.CustomWorkbenchStylesFieldLabel
+                }),
+                PropertyPaneToggle('customWorkbenchStylesFullWidth', {
+                  label: strings.customWorkbenchStylesFullWidthFieldLabel,
+                  disabled: !this.properties.customWorkbenchStyles
                 }),
                 PropertyPaneToggle('previewMode', {
                   label: strings.PreviewModeFieldLabel

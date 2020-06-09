@@ -8,8 +8,10 @@ import * as moment from 'moment';
 import * as strings from 'CalendarWebPartStrings';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 require('./calendar.css');
-import {
+import { CommunicationColors ,  FluentCustomizations, FluentTheme  } from '@uifabric/fluent-theme';
 
+import {
+  Customizer,
   IPersonaSharedProps,
   Persona,
   PersonaSize,
@@ -48,6 +50,9 @@ import { Event } from '../../../controls/Event/event';
 import { IPanelModelEnum } from '../../../controls/Event/IPanelModeEnum';
 import { IEventData } from './../../../services/IEventData';
 import { IUserPermissions } from './../../../services/IUserPermissions';
+
+
+
 const localizer = BigCalendar.momentLocalizer(moment);
 
 /**
@@ -133,7 +138,6 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
 
   /**
    *
-   *
    * @param {*} error
    * @param {*} errorInfo
    * @memberof Calendar
@@ -170,7 +174,7 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
       previewImages: [
         {
           // previewImageSrc: event.ownerPhoto,
-          previewIconProps: { iconName: 'Calendar', styles: { root: { color: event.color } }, className: styles.previewEventIcon },
+          previewIconProps: { iconName: event.fRecurrence === '0' ? 'Calendar': 'RecurringEvent', styles: { root: { color: event.color } }, className: styles.previewEventIcon },
           height: 43,
         }
       ]
@@ -195,14 +199,13 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
               <div className={styles.DocumentCardDetails}>
                 <DocumentCardTitle title={event.title} shouldTruncate={true} className={styles.DocumentCardTitle} styles={{ root: { color: event.color} }} />
               </div>
-
               {
-                moment(event.start).format('YYYY/MM/DD') !== moment(event.end).format('YYYY/MM/DD') ?
-                  <span className={styles.DocumentCardTitleTime}>{moment(event.start).format('dddd')} - {moment(event.end).format('dddd')} </span>
+                moment(event.EventDate).format('YYYY/MM/DD') !== moment(event.EndDate).format('YYYY/MM/DD') ?
+                  <span className={styles.DocumentCardTitleTime}>{moment(event.EventDate).format('dddd')} - {moment(event.EndDate).format('dddd')} </span>
                   :
-                  <span className={styles.DocumentCardTitleTime}>{moment(event.start).format('dddd')} </span>
+                  <span className={styles.DocumentCardTitleTime}>{moment(event.EventDate).format('dddd')} </span>
               }
-              <span className={styles.DocumentCardTitleTime}>{moment(event.start).format('HH:mm')}H - {moment(event.end).format('HH:mm')}H</span>
+              <span className={styles.DocumentCardTitleTime}>{moment(event.EventDate).format('HH:mm')}H - {moment(event.EndDate).format('HH:mm')}H</span>
               <Icon iconName='MapPin' className={styles.locationIcon} style={{ color: event.color }} />
               <DocumentCardTitle
                 title={`${event.location}`}
@@ -213,7 +216,7 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
               <div style={{ marginTop: 20 }}>
                 <DocumentCardActivity
                   activity={strings.EventOwnerLabel}
-                  people={[{ name: event.ownerName, profileImageSrc: event.ownerPhoto, initialsColor: event.color }]}
+                  people={[{ name: event.ownerName, profileImageSrc: event.ownerPhoto, initialsColor:event.color}]}
                 />
               </div>
             </DocumentCardDetails>
@@ -223,7 +226,6 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
     };
 
     return (
-
       <div style={{ height: 22 }}>
         <HoverCard
           cardDismissDelay={1000}
@@ -273,21 +275,34 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
    * @memberof Calendar
    */
   public eventStyleGetter(event, start, end, isSelected): any {
+
     let style: any = {
       backgroundColor: 'white',
       borderRadius: '0px',
       opacity: 1,
-      color: 'black',
+      color: event.color,
       borderWidth: '1.1px',
       borderStyle: 'solid',
       borderColor: event.color,
-      borderLeftWidth: '5px',
+      borderLeftWidth: '6px',
       display: 'block'
     };
 
     return {
       style: style
     };
+  }
+
+
+   /**
+     *
+     * @param {*} date
+     * @memberof Calendar
+     */
+    public dayPropGetter(date: Date) {
+      return {
+          className: styles.dayPropGetter
+      };
   }
 
   /**
@@ -298,7 +313,10 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
   public render(): React.ReactElement<ICalendarProps> {
 
     return (
-      <div className={styles.calendar}>
+      <Customizer {...FluentCustomizations}>
+
+
+      <div className={styles.calendar} style={{backgroundColor: 'white', padding: '20px'}}>
         <WebPartTitle displayMode={this.props.displayMode}
           title={this.props.title}
           updateProperty={this.props.updateProperty} />
@@ -323,11 +341,12 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
                 {this.state.isloading ? <Spinner size={SpinnerSize.large} label={strings.LoadingEventsLabel} /> :
                   <div className={styles.container}>
                     <BigCalendar
+                      dayPropGetter = {this.dayPropGetter}
                       localizer={localizer}
                       selectable
                       events={this.state.eventData}
-                      startAccessor="start"
-                      endAccessor="end"
+                      startAccessor="EventDate"
+                      endAccessor="EndDate"
                       eventPropGetter={this.eventStyleGetter}
                       onSelectSlot={this.onSelectSlot}
                       components={{
@@ -367,6 +386,7 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
           />
         }
       </div>
+      </Customizer>
     );
   }
 }

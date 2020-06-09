@@ -25,4 +25,9 @@ export interface IEventState {
   userPermissions?: IUserPermissions;
   isloading:boolean;
   siteRegionalSettings: any;
+  recurrenceSeriesEdited?:boolean;
+  showRecurrenceSeriesInfo:boolean;
+  newRecurrenceEvent:boolean;
+  recurrenceAction:string;
+  recurrenceDescription?:string;
 }
